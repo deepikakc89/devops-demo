@@ -1,3 +1,4 @@
-a=11
-b=20
-print("sum is ", a+b)
+a=18
+b=17
+c=99
+print("sum is :", a+b+c)
