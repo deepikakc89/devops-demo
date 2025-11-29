@@ -1,16 +1,30 @@
 pipeline {
     agent any
+    tools {
+      maven 'mvn_home'
+    }
 
     stages {
-        stage('step 1.2.1') {
+        stage('SCM-Checkout') {
             steps {
-                echo 'Iam n step 1'
+                git branch: 'main', credentialsId: 'pappu1', url: 'https://github.com/deepikakc89/my-app.git'
             }
         }
-        stage('step 2') {
+	stage('Maven - clean') {
             steps {
-                echo 'Iam n step 2'
+               sh 'mvn clean'
             }
         }
+        stage('Maven - compile') {
+            steps {
+               sh 'mvn compile'
+            }
+        }
+	stage('Maven - deploy') {
+            steps {
+               sh 'mvn package'
+            }
+        }
+
     }
 }
